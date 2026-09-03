@@ -1,0 +1,19 @@
+# secrets 
+creds/
+*.guid
+*.password
+*.key
+.env
+
+# real configs
+config.toml
+profiles/
+*.json
+
+# logs
+*.log
+
+# python
+__pycache__/
+*.pyc
+.venv/
