@@ -1,0 +1,45 @@
+[Unit]
+Description=Room booking runner (%i)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=roombook
+Group=roombook
+WorkingDirectory=/opt/roombook
+ExecStart=/usr/bin/python3 -u /opt/roombook/JMS_Booker.py \
+    --config /etc/roombook/config.toml \
+    --profile /etc/roombook/profiles/%i.toml
+
+LoadCredential=guid:/etc/roombook/creds/%i.guid
+LoadCredential=password:/etc/roombook/creds/%i.password
+
+# Sandboxing.
+# The rest is defence in depth.
+
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+DevicePolicy=closed
+ProtectSystem=strict
+ProtectHome=yes
+ProtectControlGroups=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectProc=invisible
+ProcSubset=pid
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+RestrictNamespaces=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallArchitectures=native
+SystemCallFilter=@system-service @network-io
+
+StandardOutput=journal
+StandardError=journal
+TimeoutStartSec=2min
