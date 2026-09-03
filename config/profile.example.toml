@@ -1,0 +1,10 @@
+# Per-person settings. Installed to /etc/roombook/profiles/<name>.toml
+# Credentials are NOT here, see /etc/roombook/creds/<name>.{guid,password}
+# See docs/rooms.md for the full list.
+
+room_id = "0000000"
+start_time = "11:00"
+end_time = "14:00"
+
+
+attendees = "3"

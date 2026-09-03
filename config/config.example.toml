@@ -1,0 +1,24 @@
+# JMS endpoint. Paths are
+# /login, /bookingv2/findrooms, /bookingv2
+base_url = "https://frontdoor.spa.gla.ac.uk/timetable"
+
+
+# How many times to poll for the room before giving up.
+# Runs at 23:59:55 to catch the booking window opening at midnight,
+# so this needs to span the few seconds either side.
+max_retry = 7
+retry_delay = 0.5
+
+# HTTP timeout per request, seconds.
+timeout = 30
+
+# How far ahead to book. The booking window is 7 days, but the timer
+# fires at 23:59:55,so still "today". The slot opening at midnight
+# is 8 days out from the script's point of view.
+booking_days_ahead = 8
+
+# Hours added to start/end time for the findrooms request only.
+# The booking endpoint takes the raw time.
+# Suspected timezone mismatch between the two endpoints.
+# Happened around last BST/GMT changeover, but not exactly
+findrooms_hour_offset = 1
