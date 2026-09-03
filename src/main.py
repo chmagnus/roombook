@@ -142,8 +142,8 @@ def main(config_path, profile_path):
         raise Exception("Room never became free")
 
     # Book room
-    dates = [(datetime.strptime(booking_date, "%d %b %Y").replace(hour=int(start_time[:2]), minute=int(start_time[3:])) + timedelta(minutes=30*i)).strftime("%Y-%m-%d %H:%M")
-            for i in range(int((datetime.strptime(booking_date, "%d %b %Y").replace(hour=int(end_time[:2]), minute=int(end_time[3:])) - datetime.strptime(booking_date, "%d %b %Y").replace(hour=int(start_time[:2]), minute=int(start_time[3:]))).total_seconds() // 1800))]
+    dates = [(datetime.strptime(booking_date, "%d %b %Y").replace(hour=int(start_time[:2]) + hour_offset, minute=int(start_time[3:])) + timedelta(minutes=30*i)).strftime("%Y-%m-%d %H:%M")
+            for i in range(int((datetime.strptime(booking_date, "%d %b %Y").replace(hour=int(end_time[:2]) + hour_offset, minute=int(end_time[3:])) - datetime.strptime(booking_date, "%d %b %Y").replace(hour=int(start_time[:2]) + hour_offset, minute=int(start_time[3:]))).total_seconds() // 1800))]    
     booking_payload = {
             "dates": dates,
             "attendees": attendees,
@@ -159,7 +159,7 @@ def main(config_path, profile_path):
     if not r.ok:
         raise Exception(f"Booking failed: {r.status_code} {r.reason}")
 
-    client_log.info(f"Booked {room_id} on {booking_date}, {start_time}-{end_time}")
+    client_log.info(f"Booked {room_id} on {booking_date}, sent {dates[0]} to {dates[-1]}")
     client_log.info("<<<<<<<<<<<<< Booking sequence ended >>>>>>>>>>>>>")
 
 """
