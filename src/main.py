@@ -108,7 +108,8 @@ def main(config_path, profile_path):
     client_log.info("Logging in...")
     server_log.info(f"Login status={r.status_code} {r.reason}")
 
-    # findrooms takes the hour shifted by findrooms_hour_offset; the booking endpoint takes the raw time. 
+    # Offset applied to both payloads. API stores UTC, displays local time,
+    # so send local minus one hour during BST. See config.example.toml.
     room_payload = {
                 "location": room_id,
                 "bookingDate": booking_date,

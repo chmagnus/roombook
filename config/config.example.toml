@@ -21,4 +21,4 @@ booking_days_ahead = 8
 # The booking endpoint takes the raw time.
 # Suspected timezone mismatch between the two endpoints.
 # Happened around last BST/GMT changeover, but not exactly
-findrooms_hour_offset = 1
+findrooms_hour_offset = -1
