@@ -37,7 +37,7 @@ def read_secret(name):
 
 # CLI args
 def parse_args():
-    ap = argparse.ArgumentParser(description="Book a JMS room for a single profile.")
+    ap = argparse.ArgumentParser(description="Book a room for a single profile.")
     ap.add_argument("--config", required=True, help="Shared config TOML")
     ap.add_argument("--profile", required=True, help="Per-person profile TOML")
     return ap.parse_args()

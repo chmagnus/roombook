@@ -17,8 +17,9 @@ timeout = 30
 # is 8 days out from the script's point of view.
 booking_days_ahead = 8
 
-# Hours added to start/end time for the findrooms request only.
-# The booking endpoint takes the raw time.
-# Suspected timezone mismatch between the two endpoints.
-# Happened around last BST/GMT changeover, but not exactly
+# Hour offset applied to both the findrooms search and the booking payload
+# The API stores times in UTC and displays them in local time, so during BST
+# the script has to send local time minus one hour.
+# -1 during BST. Should become 0 when BST ends on OCT.
+# Happened around last BST/GMT changeover, but not exactly.
 findrooms_hour_offset = -1

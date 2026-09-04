@@ -8,7 +8,7 @@ Type=oneshot
 User=roombook
 Group=roombook
 WorkingDirectory=/opt/roombook
-ExecStart=/usr/bin/python3 -u /opt/roombook/JMS_Booker.py \
+ExecStart=/usr/bin/python3 -u /opt/roombook/main.py \
     --config /etc/roombook/config.toml \
     --profile /etc/roombook/profiles/%i.toml
 
