@@ -17,7 +17,7 @@ timeout = 30
 # is 8 days out from the script's point of view.
 booking_days_ahead = 8
 
-# Hour offset applied to both the findrooms search and the booking payload
+# Hours added to the booking payload only. findrooms takes local time,
 # The API stores times in UTC and displays them in local time, so during BST
 # the script has to send local time minus one hour.
 # -1 during BST. Should become 0 when BST ends on OCT.

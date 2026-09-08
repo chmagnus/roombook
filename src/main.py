@@ -108,13 +108,13 @@ def main(config_path, profile_path):
     client_log.info("Logging in...")
     server_log.info(f"Login status={r.status_code} {r.reason}")
 
-    # Offset applied to both payloads. API stores UTC, displays local time,
-    # so send local minus one hour during BST. See config.example.toml.
+    # Offset applied to booking payload only. 
+    # See config.example.toml.
     room_payload = {
                 "location": room_id,
                 "bookingDate": booking_date,
-                "startTime": f'{int(start_time[:2]) + hour_offset:02d}{start_time[2:]}',
-                "endTime": f'{int(end_time[:2]) + hour_offset:02d}{end_time[2:]}',
+                "startTime": start_time,
+                "endTime": end_time,
                 "attendees": attendees
                 }
    

@@ -55,8 +55,7 @@ Note:
 All three share one `requests.Session()`, so the cookie set at login carries
 through the next two requests.
 
-The API stores times in UTC and displays them in local time. During BST the script has to send local time minus one hour, which is what
-`findrooms_hour_offset = -1` does.
+The two endpoints disagree about time. findrooms takes local time as you'd write it, but the booking endpoint takes server time, which runs an hour behind during BST.
 But the time of this change was not exact, because I added this during march 2026 when I got fail bookings few days before the switch, so I suspect that it was done manually on server side. 
 
 ### Timer
